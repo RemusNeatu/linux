@@ -38,6 +38,7 @@ struct mon_proc {
 static struct my_device_data {
 	struct cdev cdev;
 	/* TODO 1: add timer */
+	struct timer_list timer;
 	/* TODO 2: add flag */
 	/* TODO 3: add work */
 	/* TODO 4: add list for monitored processes */
@@ -74,14 +75,22 @@ static struct mon_proc *get_proc(pid_t pid)
 
 
 /* TODO 3: define work handler */
+static void work_handler(struct work_struct *work)
+{
+	alloc_io();
+}
+
 
 #define ALLOC_IO_DIRECT
 /* TODO 3: undef ALLOC_IO_DIRECT*/
+#undef ALLOC_IO_DIRECT
 
 static void timer_handler(struct timer_list *tl)
 {
 	/* TODO 1: implement timer handler */
+
 	/* TODO 2: check flags: TIMER_TYPE_SET or TIMER_TYPE_ALLOC */
+
 		/* TODO 3: schedule work */
 		/* TODO 4: iterate the list and check the proccess state */
 			/* TODO 4: if task is dead print info ... */
